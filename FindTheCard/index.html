@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the card</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+</head>
+<body>
+
+<h1>Find the Gwent card</h1>
+
+<img id="image0" class="card" src="img/scb.png" onclick="clickCard(0)" alt="Gwent 0">
+<img id="image1" class="card" src="img/stcb.png" onclick="clickCard(1)" alt="Gwent 1">
+<img id="image2" class="card" src="img/sycb.png" onclick="clickCard(2)" alt="Gwent 2">
+
+<div class="outputMessage">
+    <p id="firstSelection">Find the first card</p>
+    <p id="secondSelection">Would you like to change your selection?</p>
+    <p id="victory">You win <span onclick="newGame()" class="link">New game?</span></p>
+    <p id="failure">You lose <span onclick="newGame()" class="link">New game?</span></p>
+</div>
+
+<script>
+    newGame();
+</script>
+
+</body>
+</html>

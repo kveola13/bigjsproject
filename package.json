@@ -1,12 +1,17 @@
 {
-  "name": "bigproject",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "bigpp",
+  "version": "bigpp",
+  "description": "bigpp",
+  "main": "bigpp",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "ola <kveola13@student.westerdals.no>",
+  "license": "none",
+  "repository": "https://github.com/kveola13/bigjsproject.git",
+  "private": null,
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
 }

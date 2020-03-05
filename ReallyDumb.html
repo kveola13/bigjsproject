@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dummy Thicc</title>
+
+    <style>
+        .button {
+            border: 2px solid rgb(30, 30, 30);
+            border-radius: 5px;
+            background-color: rgb(207, 205, 200);
+            color: rgb(71, 53, 25);
+            margin: 5px;
+            padding: 3px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        body {
+            margin: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Are you dummy thicc?</h1>
+<p>Yes?</p>
+<div class="button" id="button0" onclick="showText()" onmouseover="changeButton('button1')"></div>
+<div class="button" id="button1" onclick="showText()" onmouseover="changeButton('button0')"></div>
+<script>
+    let yesButtonText;
+    changeButton = function (id) {
+        if (id === yesButtonText) {
+            return;
+        }
+        yesButtonText = id;
+        let noButtonText;
+
+        if (id === "button0") {
+            noButtonText = "button1"
+        } else {
+            noButtonText = "button0"
+        }
+        const divElementYes = document.getElementById(noButtonText);
+        const divElementNo = document.getElementById(yesButtonText);
+
+        divElementYes.innerHTML = "Yes";
+        divElementNo.innerHTML = "No";
+    };
+    showText = function () {
+        alert("You are dummy thicc, bro")
+    };
+    changeButton("button1");
+</script>
+</body>
+</html>

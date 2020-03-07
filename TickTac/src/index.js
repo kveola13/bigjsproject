@@ -1,37 +1,34 @@
 import {tacBoard} from "./tacBoard"
 
 
+class HtmlBoardRenderer {
 
-class HtmlBoardRenderer{
-
-    constructor(){
+    constructor() {
 
         this.statusDiv = document.getElementById("displayInfo");
         this.cellDivs = Array(9);
 
-        for(let i=0; i<this.cellDivs.length; i++){
+        for (let i = 0; i < this.cellDivs.length; i++) {
             this.cellDivs[i] = document.getElementById("rect" + i);
         }
 
         this.reset();
     }
 
-
     reset() {
 
-        for(let i=0; i<this.cellDivs.length; i++){
+        for (let i = 0; i < this.cellDivs.length; i++) {
             this.updateRect(i, null);
         }
 
         this.updateStatus("");
     }
 
-
-    updateRect(index, value){
+    updateRect(index, value) {
 
         const div = this.cellDivs[index];
 
-        if(!value){
+        if (!value) {
             div.innerHTML = "";
             div.style.cursor = "pointer";
         } else {
@@ -40,31 +37,30 @@ class HtmlBoardRenderer{
         }
     }
 
-    updateStatus(message){
+    updateStatus(message) {
         this.statusDiv.innerHTML = message;
     }
 }
-
 
 const renderer = new HtmlBoardRenderer();
 const board = new tacBoard(renderer);
 
 const bindBoardEvents = function () {
 
-    for(let i=0; i<renderer.cellDivs.length; i++){
-
+    for (let i = 0; i < renderer.cellDivs.length; i++) {
         const div = renderer.cellDivs[i];
-        div.onclick = () => {board.chooseRect(i)};
+        div.onclick = () => {
+            board.chooseRect(i)
+        };
     }
 };
 
 bindBoardEvents();
 
+const initNewMatchBtn = function () {
 
-const initNewMatchBtn = function(){
-
-    const btn = document.getElementById("replayButton");
-    btn.onclick = () => board.reset();
+    const button = document.getElementById("replayButton");
+    button.onclick = () => board.reset();
 };
 
 initNewMatchBtn();

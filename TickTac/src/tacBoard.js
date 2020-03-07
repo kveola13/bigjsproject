@@ -31,7 +31,7 @@ export class tacBoard {
             this.renderer.updateStatus("X wins");
         } else if (this.doesOWin()) {
             this.renderer.updateStatus("O wins");
-        } else if(this.counter >= 8){
+        } else if (this.counter >= 8) {
             this.renderer.updateStatus("TIE!");
         } else {
             this.renderer.updateStatus("Next: " + (this.whichPlayer() ? O : X));
@@ -74,7 +74,6 @@ export class tacBoard {
                 return true;
             }
         }
-
         return false;
     }
 

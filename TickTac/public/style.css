@@ -1,7 +1,6 @@
-body{
+body {
     margin: 30px;
 }
-
 
 .rect {
     float: left;
@@ -16,17 +15,15 @@ body{
     margin-top: -1px;
 }
 
-
 .game {
     margin-top: 50px;
     display: flex;
     flex-direction: row;
 }
 
-.game-info {
+.gameDisplay {
     margin-left: 20px;
 }
-
 
 .button {
     background-color: rgb(207, 205, 200);

@@ -23,7 +23,7 @@ body{
     flex-direction: row;
 }
 
-.tacInfo {
+.game-info {
     margin-left: 20px;
 }
 
@@ -35,8 +35,7 @@ body{
     vertical-align: middle;
     border: 2px solid black;
     border-radius: 5px;
-    margin: 5px;
-    margin-top: 20px;
+    margin: 20px 5px 5px;
     padding: 3px;
     cursor: pointer;
 }

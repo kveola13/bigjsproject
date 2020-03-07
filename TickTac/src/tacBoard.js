@@ -1,7 +1,9 @@
-const cross = "X";
-const circle = "O";
+const X = "X";
+const O = "O";
+
 
 export class tacBoard {
+
     constructor(renderer) {
         this.rects = Array(9);
         this.renderer = renderer;
@@ -10,45 +12,48 @@ export class tacBoard {
     }
 
     reset() {
-        this.rects.fill(null)
+        this.rects.fill(null);
         this.counter = 0;
         this.renderer.reset();
-        this.renderer.updateInfo("Player: " + (this.whichPlayer() ? circle : cross));
+        this.renderer.updateStatus("Next: " + (this.whichPlayer() ? X : O));
     }
 
     chooseRect(index) {
-        if (this.rects[index] || this.hasWon()) {
+        if (this.rects[index] || this.gameOver()) {
             return;
         }
-        const value = this.whichPlayer() ? circle : cross;
+
+        const value = this.whichPlayer() ? X : O;
         this.rects[index] = value;
         this.renderer.updateRect(index, value);
 
         if (this.hasCrossWon()) {
-            this.renderer.updateInfo("X wins!");
-        } else if (this.hasCircleWon()) {
-            this.renderer.updateInfo("O wins!");
-        } else if (this.counter >= 8) {
-            this.renderer.updateInfo("TIE!");
+            this.renderer.updateStatus("X wins");
+        } else if (this.doesOWin()) {
+            this.renderer.updateStatus("O wins");
+        } else if(this.counter >= 8){
+            this.renderer.updateStatus("TIE!");
         } else {
-            this.renderer.updateInfo("Next: " + (this.whichPlayer() ? circle : cross))
+            this.renderer.updateStatus("Next: " + (this.whichPlayer() ? O : X));
         }
+
         this.counter++;
     }
 
-    hasWon() {
-        return this.hasCrossWon() || this.hasCircleWon();
+    gameOver() {
+        return this.hasCrossWon() || this.doesOWin();
     }
 
     hasCrossWon() {
-        return this.winCondition(cross);
+        return this.doesWin(X);
     }
 
-    hasCircleWon() {
-        return this.winCondition(circle);
+    doesOWin() {
+        return this.doesWin(O);
     }
 
-    winCondition(value) {
+    doesWin(value) {
+
         const winCombos = [
             [0, 1, 2],
             [3, 4, 5],
@@ -59,14 +64,17 @@ export class tacBoard {
             [0, 4, 8],
             [2, 4, 6]
         ];
+
         for (let i = 0; i < winCombos.length; i++) {
-            const winCon = winCombos[i];
-            if (this.rects[winCon[0]] === value
-                && this.rects[winCon[1]] === value
-                && this.rects[winCon[2]] === value) {
+            const winConditions = winCombos[i];
+
+            if (this.rects[winConditions[0]] === value
+                && this.rects[winConditions[1]] === value
+                && this.rects[winConditions[2]] === value) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -74,3 +82,4 @@ export class tacBoard {
         return (this.counter % 2) === 0;
     }
 }
+

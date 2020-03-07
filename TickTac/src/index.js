@@ -1,26 +1,37 @@
-import {tacBoard} from "./tacBoard";
+import {tacBoard} from "./tacBoard"
 
-class TikTokBoard {
-    constructor() {
+
+
+class HtmlBoardRenderer{
+
+    constructor(){
+
         this.statusDiv = document.getElementById("displayInfo");
-        this.rects = Array(9);
+        this.cellDivs = Array(9);
 
-        for (let i = 0; i < this.rects.length; i++) {
-            this.rects[i] = document.getElementById("rect" + i);
+        for(let i=0; i<this.cellDivs.length; i++){
+            this.cellDivs[i] = document.getElementById("rect" + i);
         }
+
         this.reset();
     }
 
+
     reset() {
-        for (let i = 0; i < this.rects.length; i++) {
-            this.updateRects(i, null);
+
+        for(let i=0; i<this.cellDivs.length; i++){
+            this.updateRect(i, null);
         }
-        this.updateInfo("");
+
+        this.updateStatus("");
     }
 
-    updateRects(index, value) {
-        const div = this.rects[index];
-        if (!value) {
+
+    updateRect(index, value){
+
+        const div = this.cellDivs[index];
+
+        if(!value){
             div.innerHTML = "";
             div.style.cursor = "pointer";
         } else {
@@ -29,28 +40,31 @@ class TikTokBoard {
         }
     }
 
-    updateInfo(message) {
+    updateStatus(message){
         this.statusDiv.innerHTML = message;
     }
 }
 
-const renderer = new TikTokBoard();
+
+const renderer = new HtmlBoardRenderer();
 const board = new tacBoard(renderer);
 
-const bindBoards = function () {
-    for (let i = 0; i < renderer.rects.length; i++) {
-        const div = renderer.rects[i];
-        div.onclick = () => {
-            board.chooseRect(i)
-        }
+const bindBoardEvents = function () {
+
+    for(let i=0; i<renderer.cellDivs.length; i++){
+
+        const div = renderer.cellDivs[i];
+        div.onclick = () => {board.chooseRect(i)};
     }
 };
 
-bindBoards();
+bindBoardEvents();
 
-const replayMatch = function () {
-    const button = document.getElementById("replayButton");
-    button.onclick = () => board.reset();
+
+const initNewMatchBtn = function(){
+
+    const btn = document.getElementById("replayButton");
+    btn.onclick = () => board.reset();
 };
 
-replayMatch();
+initNewMatchBtn();

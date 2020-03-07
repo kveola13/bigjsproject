@@ -7,7 +7,6 @@ export class tacBoard {
     constructor(renderer) {
         this.rects = Array(9);
         this.renderer = renderer;
-
         this.reset();
     }
 

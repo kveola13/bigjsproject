@@ -12,6 +12,7 @@
   "repository": "https://github.com/kveola13/bigjsproject.git",
   "private": null,
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "react-dom": "^16.13.0"
   }
 }
